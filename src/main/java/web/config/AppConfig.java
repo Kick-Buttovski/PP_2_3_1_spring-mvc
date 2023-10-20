@@ -48,7 +48,6 @@ public class AppConfig {
             Properties properties = new Properties();
             InputStream is = getClass().getClassLoader().getResourceAsStream("hibernate.properties");
             properties.load(is);
-//            properties.put("hibernate.ddl-auto", env.getProperty("hibernate.ddl-auto"));
             return properties;
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
