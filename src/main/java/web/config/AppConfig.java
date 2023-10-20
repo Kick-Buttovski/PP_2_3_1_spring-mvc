@@ -25,11 +25,15 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-    @Autowired
     private Environment env;
 
+    @Autowired
+    public AppConfig(Environment env) {
+        this.env = env;
+    }
+
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(){
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(getDataSource());
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
@@ -40,12 +44,12 @@ public class AppConfig {
     }
 
     private Properties getHibernateJPAProperties() {
-        try{
+        try {
             Properties properties = new Properties();
             InputStream is = getClass().getClassLoader().getResourceAsStream("hibernate.properties");
             properties.load(is);
             return properties;
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
