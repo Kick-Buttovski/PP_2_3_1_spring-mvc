@@ -9,7 +9,6 @@ import web.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-
 public class UserController {
     private final UserService userService;
 
@@ -35,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("person") User user) {
+    public String create(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/user";
     }
@@ -47,7 +46,7 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute("person") User user) {
+    public String update(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/user";
     }
